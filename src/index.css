@@ -9,7 +9,8 @@
   }
   
   body {
-    @apply antialiased bg-gray-900;
+    @apply bg-gray-900 text-white antialiased;
+    direction: rtl;
     margin: 0;
     min-height: 100vh;
   }
@@ -164,10 +165,4 @@
 .input-silver:focus {
   border-color: var(--electric-blue);
   box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.2);
-}
-
-body {
-  direction: rtl;
-  background-color: #0a192f;
-  color: white;
 }
