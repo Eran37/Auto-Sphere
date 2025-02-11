@@ -28,12 +28,15 @@ export default function ContactForm() {
     setSubmitStatus("idle");
 
     try {
-      const db = await getDb();
-      await db.collection(collections.contacts).insertOne({
-        ...formData,
-        created_at: new Date(),
-        status: "new",
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
+
+      if (!response.ok) throw new Error("Failed to submit");
 
       setSubmitStatus("success");
       setFormData({
