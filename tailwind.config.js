@@ -6,14 +6,8 @@ export default {
   ],
   theme: {
     extend: {
-      keyframes: {
-        scroll: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(calc(-50% - 3rem))' },
-        },
-      },
-      animation: {
-        'scroll': 'scroll 40s linear infinite',
+      fontFamily: {
+        rubik: ['Rubik', 'sans-serif'],
       },
     },
   },

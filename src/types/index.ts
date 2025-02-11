@@ -1,9 +1,11 @@
+import { LucideIcon } from "lucide-react";
+
 export interface Service {
   id: string;
   title: string;
   description: string;
   examples: string[];
-  icon: any;
+  icon: LucideIcon;
 }
 
 export interface AutomationPlatform {
