@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Rubik', sans-serif;
+  }
+  
+  body {
+    @apply antialiased bg-gray-900;
+  }
+
+  :root {
+    /* New Futuristic Color Palette */
+    --electric-blue: #1E90FF;
+    --neon-green: #32CD32;
+    --hot-pink: #FF1493;
+    --cyber-yellow: #FFD700;
+    --bright-orange: #FF8C00;
+    
+    /* Original Colors as Accents */
+    --neon-blue: #00f7ff;
+    --neon-purple: #b400ff;
+    --dark-blue: #0a192f;
+    --silver-light: #e5e7eb;
+    --silver-main: #94a3b8;
+    --silver-dark: #475569;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-rubik font-bold tracking-tight;
+  }
+
+  p, span, a, button, input, textarea {
+    @apply font-rubik;
+  }
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(45deg, var(--electric-blue), var(--hot-pink), var(--cyber-yellow));
+}
+
+.neon-glow {
+  box-shadow: 0 0 15px rgba(30, 144, 255, 0.3),
+              0 0 30px rgba(255, 20, 147, 0.1);
+}
+
+.card-gradient {
+  background: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(17, 34, 64, 0.95) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--electric-blue);
+}
+
+.silver-highlight {
+  position: relative;
+}
+
+.silver-highlight::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+}
+
+.silver-border {
+  border: 1px solid var(--electric-blue);
+  position: relative;
+  overflow: hidden;
+}
+
+.silver-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  background: linear-gradient(45deg, transparent, var(--hot-pink), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.silver-border:hover::before {
+  opacity: 0.2;
+}
+
+/* Circuit animation with new color accents */
+.circuit-animation {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.circuit-animation:hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 20%,
+    var(--electric-blue) 40%,
+    var(--hot-pink) 50%,
+    var(--cyber-yellow) 60%,
+    transparent 80%
+  );
+  animation: lightning-flash 0.4s ease-out forwards;
+}
+
+@keyframes lightning-flash {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.3) translateX(-100%);
+  }
+  15% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  45% {
+    opacity: 0.8;
+  }
+  60% {
+    opacity: 0.2;
+  }
+  75% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(0.3) translateX(100%);
+  }
+}
+
+/* Logo hover effect with new colors */
+.logo-hover-effect:hover {
+  text-shadow: 0 0 10px var(--electric-blue),
+               0 0 20px var(--hot-pink),
+               0 0 30px var(--cyber-yellow);
+}
+
+/* Button styles with new palette */
+.btn-silver {
+  background: linear-gradient(45deg, var(--electric-blue), var(--neon-green));
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-silver:hover {
+  background: linear-gradient(45deg, var(--hot-pink), var(--bright-orange));
+  transform: translateY(-1px);
+}
+
+/* Input focus styles */
+.input-silver:focus {
+  border-color: var(--electric-blue);
+  box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.2);
+}
