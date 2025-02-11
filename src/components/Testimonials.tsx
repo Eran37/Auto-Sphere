@@ -1,5 +1,47 @@
 import { Star, Quote } from "lucide-react";
 
+interface Testimonial {
+  id: number;
+  name: string;
+  title: string;
+  content: string;
+  rating: number;
+  avatar: string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    id: 1,
+    name: "דוד כהן",
+    title: "מנכ\"ל, משרד עורכי דין כהן ושות'",
+    content:
+      "המערכת חסכה לנו מעל 30 שעות עבודה בחודש. האוטומציה של תהליכי המשרד שיפרה משמעותית את היעילות שלנו.",
+    rating: 5,
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  },
+  {
+    id: 2,
+    name: "רונית לוי",
+    title: 'סמנכ"לית תפעול, חברת נדל"ן',
+    content:
+      "האוטומציה שיפרה את הדיוק והמהירות של העבודה שלנו. חסכנו המון זמן בניהול המסמכים.",
+    rating: 5,
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  },
+  {
+    id: 3,
+    name: "יוסי אברהם",
+    title: "בעלים, סוכנות ביטוח",
+    content:
+      "השירות מעולה והתוצאות מדברות בעד עצמן. הצלחנו להגדיל את התפוקה ב-40% בזכות האוטומציה.",
+    rating: 4,
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  },
+];
+
 export default function Testimonials() {
   return (
     <section id="testimonials" className="py-20 bg-[#0a192f]">

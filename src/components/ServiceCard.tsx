@@ -1,4 +1,4 @@
-import { LucideIcon } from "lucide-react";
+import { LucideIcon, CheckCircle } from "lucide-react";
 
 interface ServiceCardProps {
   service: {
