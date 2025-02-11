@@ -1,40 +1,19 @@
-import { AutomationPlatform } from '../types';
+import { Bot, Code, Database, FileText, Mail, MessageSquare } from "lucide-react";
 
-export const automationPlatforms: AutomationPlatform[] = [
+export const platforms = [
   {
-    id: 1,
-    name: "אוטומציה למשרדי עורכי דין",
-    description: "מערכת שמנהלת תיקים, מסמכים ותזכורות באופן אוטומטי",
-    features: [
-      "יצירה אוטומטית של מסמכים משפטיים",
-      "תזכורות חכמות למועדי דיונים ומשימות",
-      "ניהול אוטומטי של תיקי לקוחות",
-      "תיעוד ומעקב אחר שעות עבודה"
-    ],
-    icon: "Scale"
+    name: "אוטומציית תהליכים",
+    description: "ייעול תהליכים עסקיים חוזרים",
+    icon: Bot
   },
   {
-    id: 2,
-    name: "אוטומציה למשרדי רואי חשבון",
-    description: "מערכת שמייעלת תהליכי הנהלת חשבונות ודיווחים",
-    features: [
-      "הפקה אוטומטית של דוחות כספיים",
-      "סנכרון נתונים בין מערכות",
-      "מעקב אחר תשלומים והוצאות",
-      "תזכורות לדיווחים תקופתיים"
-    ],
-    icon: "Calculator"
+    name: "אוטומציית מסמכים",
+    description: "ניהול וארגון מסמכים אוטומטי",
+    icon: FileText
   },
   {
-    id: 3,
-    name: "אוטומציה לסוכנויות ביטוח",
-    description: "מערכת שמנהלת פוליסות, תביעות ומעקב לקוחות",
-    features: [
-      "חידוש אוטומטי של פוליסות",
-      "מעקב אחר תביעות ותזכורות",
-      "ניהול קשרי לקוחות חכם",
-      "הפקת דוחות ביצועים"
-    ],
-    icon: "Shield"
+    name: "אוטומציית תקשורת",
+    description: "ניהול תקשורת אוטומטית עם לקוחות",
+    icon: MessageSquare
   }
 ];

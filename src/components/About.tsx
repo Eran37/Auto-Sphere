@@ -1,21 +1,22 @@
-import React from 'react';
-import { Bot, Shield, Award, Cpu, Brain } from 'lucide-react';
+import { Bot, Award, Cpu, Brain } from "lucide-react";
 
 export default function About() {
   return (
-    <section id="about" className="py-20 bg-[#0a192f]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-12">אודותינו</h2>
         {/* Enterprise Experience */}
         <div className="card-gradient rounded-lg p-8 mb-12 border border-[#1E90FF] neon-glow flex flex-col items-center">
           <div className="flex items-center mb-4 justify-center">
             <Award className="h-8 w-8 text-[#1E90FF] ml-3" />
             <h3 className="text-2xl font-bold gradient-text">ניסיון מוכח</h3>
           </div>
-          
+
           <p className="text-gray-300 text-lg leading-relaxed text-center">
-            המומחים שלנו פיתחו והטמיעו פתרונות אוטומציה מתקדמים בחברות מובילות במשק
-            כמו Matrix ltd., ZIM, ITURAN, LEUMIT, SHEBA TEL HASHOMER.
-            הניסיון העשיר הזה מאפשר לנו להבין לעומק את האתגרים הטכניים והעסקיים ולספק פתרונות יעילים.
+            המומחים שלנו פיתחו והטמיעו פתרונות אוטומציה מתקדמים בחברות מובילות
+            במשק כמו Matrix ltd., ZIM, ITURAN, LEUMIT, SHEBA TEL HASHOMER.
+            הניסיון העשיר הזה מאפשר לנו להבין לעומק את האתגרים הטכניים והעסקיים
+            ולספק פתרונות יעילים.
           </p>
         </div>
 
@@ -24,19 +25,23 @@ export default function About() {
           <div className="card-gradient rounded-lg p-8 border border-[#1E90FF] neon-glow flex flex-col items-center">
             <div className="flex items-center mb-4 justify-center">
               <Cpu className="h-8 w-8 text-[#1E90FF] ml-3" />
-              <h3 className="text-2xl font-bold gradient-text">מומחיות טכנית</h3>
+              <h3 className="text-2xl font-bold gradient-text">
+                מומחיות טכנית
+              </h3>
             </div>
             <p className="text-gray-300 text-lg leading-relaxed text-center">
-              הצוות שלנו כולל מומחי RPA ו-AI עם ניסיון עשיר בפיתוח מערכות אוטומציה מתקדמות.
-              אנחנו משלבים טכנולוגיות מובילות כמו UiPath, Power Automate ו-Make כדי לספק
-              פתרונות אוטומציה יעילים ומדויקים.
+              הצוות שלנו כולל מומחי RPA ו-AI עם ניסיון עשיר בפיתוח מערכות
+              אוטומציה מתקדמות. אנחנו משלבים טכנולוגיות מובילות כמו UiPath,
+              Power Automate ו-Make כדי לספק פתרונות אוטומציה יעילים ומדויקים.
             </p>
           </div>
 
           <div className="card-gradient rounded-lg p-8 border border-[#1E90FF] neon-glow flex flex-col items-center">
             <div className="flex items-center mb-4 justify-center">
               <Brain className="h-8 w-8 text-[#1E90FF] ml-3" />
-              <h3 className="text-2xl font-bold gradient-text">ניתוח תהליכים מתקדם</h3>
+              <h3 className="text-2xl font-bold gradient-text">
+                ניתוח תהליכים מתקדם
+              </h3>
             </div>
             <p className="text-gray-300 text-lg leading-relaxed text-center">
               אנחנו מבצעים ניתוח מעמיק של תהליכים עסקיים ודפוסי עבודה כדי לזהות

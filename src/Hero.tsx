@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowLeft, Bot } from 'lucide-react';
+import React from "react";
+import { ArrowLeft, Bot, Clock, DollarSign, TrendingUp } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -10,13 +10,19 @@ export default function Hero() {
             <div className="text-center">
               <div className="flex items-center justify-center mb-4">
                 <Bot className="h-8 w-8 text-[#00f7ff] ml-2 animate-bounce" />
-                <span className="text-[#00f7ff] font-medium">אוטומציה חכמה לעסקים</span>
+                <span className="text-[#00f7ff] font-medium">
+                  אוטומציה חכמה לעסקים
+                </span>
               </div>
               <h1 className="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
-                <span className="gradient-text">תן למערכת לעבוד בשבילך 24/7</span>
+                <span className="gradient-text">
+                  תן למערכת לעבוד בשבילך 24/7
+                </span>
               </h1>
               <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl">
-                הפוך תהליכים ידניים לאוטומטיים, קבל דוחות חכמים ותקשר עם לקוחות באופן מיידי. המערכת עובדת בשבילך 24/7, כך שתוכל להתמקד בדברים החשובים באמת.
+                הפוך תהליכים ידניים לאוטומטיים, קבל דוחות חכמים ותקשר עם לקוחות
+                באופן מיידי. המערכת עובדת בשבילך 24/7, כך שתוכל להתמקד בדברים
+                החשובים באמת.
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center">
                 <div className="rounded-md shadow">

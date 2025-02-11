@@ -1,5 +1,24 @@
-import { getDb, collections } from '../lib/mongodb';
-import type { Contact, ChatMessage, CompanyLogo } from '../types/mongodb';
+import { MongoClient, Db } from 'mongodb';
+import type { Contact, ChatMessage } from '../types/mongodb';
+
+let cachedDb: Db | null = null;
+
+export const collections = {
+  companyLogos: 'company_logos',
+  contacts: 'contacts',
+  chatMessages: 'chat_messages'
+} as const;
+
+export async function getDb(): Promise<Db> {
+  if (cachedDb) {
+    return cachedDb;
+  }
+
+  const client = await MongoClient.connect(process.env.MONGODB_URI || '');
+  const db = client.db(process.env.MONGODB_DB_NAME);
+  cachedDb = db;
+  return db;
+}
 
 export async function getContacts() {
   const db = await getDb();

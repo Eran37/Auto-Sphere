@@ -3,28 +3,10 @@ import { MessageCircle, X } from "lucide-react";
 import { getDb, collections } from "../lib/mongodb";
 import type { ChatMessage } from "../types/mongodb";
 
-interface Message {
-  text: string;
-  isBot: boolean;
-}
-
-interface ChatForm {
-  name: string;
-  email: string;
-  phone: string;
-  problem: string;
-}
-
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
-  const [formData, setFormData] = useState<ChatForm>({
-    name: "",
-    email: "",
-    phone: "",
-    problem: "",
-  });
   const [currentStep, setCurrentStep] = useState<keyof ChatForm>("name");
   const [isConversationEnded, setIsConversationEnded] = useState(false);
   const [isSending, setIsSending] = useState(false);
@@ -165,7 +147,7 @@ export default function ChatBot() {
           return;
         }
         updatedFormData.problem = input;
-        await handleSubmit(event);
+        await handleSubmit(event as React.FormEvent);
         break;
     }
   };

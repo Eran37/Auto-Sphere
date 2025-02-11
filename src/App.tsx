@@ -1,5 +1,4 @@
 import React from "react";
-import { services } from "./data/services";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import AutomationPlatforms from "./components/AutomationPlatforms";

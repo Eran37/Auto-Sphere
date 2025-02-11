@@ -1,17 +1,19 @@
 import React from "react";
-import { platforms } from "../data/automationPlatforms";
-import type { AutomationPlatform } from "../types/mongodb";
 import { LucideIcon } from "lucide-react";
 
-interface PlatformCardProps {
-  platform: {
-    name: string;
-    description: string;
-    icon: LucideIcon;
-  };
+interface Platform {
+  name: string;
+  description: string;
+  icon: LucideIcon;
 }
 
-const PlatformCard: React.FC<PlatformCardProps> = ({ platform }) => {
+const platforms: Array<Platform> = [
+  // הוסף כאן את הפלטפורמות שלך
+];
+
+const PlatformCard: React.FC<{ platform: Platform; index: number }> = ({
+  platform,
+}) => {
   const Icon = platform.icon;
   return (
     <div className="p-6 bg-gray-800 rounded-lg">
@@ -31,7 +33,7 @@ export default function AutomationPlatforms() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {platforms.map((platform, index) => (
-            <PlatformCard key={index} platform={platform} />
+            <PlatformCard key={index} platform={platform} index={index} />
           ))}
         </div>
       </div>
