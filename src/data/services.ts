@@ -25,7 +25,7 @@ export const services: Service[] = [
     ]
   },
   {
-    id: 3,
+    id: "3",
     title: "תקשורת חכמה עם לקוחות",
     description: "מערכת תקשורת מבוססת AI המגיבה ללקוחות באופן מיידי, 24/7",
     examples: [
@@ -36,7 +36,7 @@ export const services: Service[] = [
     icon: MessageCircle
   },
   {
-    id: 4,
+    id: "4",
     title: "ניתוח נתונים מתקדם",
     description: "ניתוח חכם של נתונים עסקיים באמצעות AI",
     examples: [
@@ -47,7 +47,7 @@ export const services: Service[] = [
     icon: BarChart
   },
   {
-    id: 5,
+    id: "5",
     title: "אוטומציה מאובטחת",
     description: "אוטומציה רובוטית (RPA) עם אבטחה מתקדמת",
     examples: [
@@ -58,7 +58,7 @@ export const services: Service[] = [
     icon: Lock
   },
   {
-    id: 6,
+    id: "6",
     title: "שילוב טכנולוגיות מתקדמות",
     description: "אוטומציה בענן עם כלים מתקדמים כמו Make ו-Power Automate",
     examples: [

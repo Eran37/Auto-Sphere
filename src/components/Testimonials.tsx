@@ -1,7 +1,4 @@
-import React from 'react';
-import { Star, Quote } from 'lucide-react';
-import type { Testimonial } from '../types';
-import { testimonials } from '../data/testimonials';
+import { Star, Quote } from "lucide-react";
 
 export default function Testimonials() {
   return (
@@ -35,12 +32,17 @@ export default function Testimonials() {
                   />
                 </div>
                 <div className="mr-4">
-                  <h3 className="text-lg font-semibold text-gray-100">דוד כהן</h3>
-                  <p className="text-gray-400">מנכ"ל, משרד עורכי דין כהן ושות'</p>
+                  <h3 className="text-lg font-semibold text-gray-100">
+                    דוד כהן
+                  </h3>
+                  <p className="text-gray-400">
+                    מנכ"ל, משרד עורכי דין כהן ושות'
+                  </p>
                 </div>
               </div>
               <p className="text-gray-300 text-lg">
-                "המערכת חסכה לנו מעל 30 שעות עבודה בחודש. האוטומציה של תהליכי המשרד שיפרה משמעותית את היעילות שלנו."
+                "המערכת חסכה לנו מעל 30 שעות עבודה בחודש. האוטומציה של תהליכי
+                המשרד שיפרה משמעותית את היעילות שלנו."
               </p>
             </div>
           </div>
@@ -60,19 +62,19 @@ export default function Testimonials() {
                     key={i}
                     className={`h-5 w-5 ${
                       i < testimonial.rating
-                        ? 'text-yellow-400 fill-current'
-                        : 'text-gray-400'
+                        ? "text-yellow-400 fill-current"
+                        : "text-gray-400"
                     }`}
                   />
                 ))}
               </div>
 
               <Quote className="absolute top-4 right-4 h-8 w-8 text-[#1E90FF] opacity-20" />
-              
+
               <blockquote className="text-gray-300 text-lg mb-6 mt-12">
                 "{testimonial.content}"
               </blockquote>
-              
+
               <div className="flex items-center mt-auto">
                 <div className="flex-shrink-0">
                   <img
@@ -85,7 +87,9 @@ export default function Testimonials() {
                   <div className="text-base font-semibold text-gray-100">
                     {testimonial.name}
                   </div>
-                  <div className="text-sm text-gray-400">{testimonial.title}</div>
+                  <div className="text-sm text-gray-400">
+                    {testimonial.title}
+                  </div>
                 </div>
               </div>
             </div>

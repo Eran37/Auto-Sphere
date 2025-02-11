@@ -1,5 +1,4 @@
-import { FC } from "react";
-import { Bot, Clock, DollarSign, TrendingUp, ArrowLeft } from "lucide-react";
+import { Bot, Clock, DollarSign, TrendingUp } from "lucide-react";
 
 export default function Hero() {
   return (

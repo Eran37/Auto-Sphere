@@ -1,6 +1,4 @@
-import React from "react";
-import { LucideIcon, CheckCircle } from "lucide-react";
-import { Service } from "../types";
+import { LucideIcon } from "lucide-react";
 
 interface ServiceCardProps {
   service: {

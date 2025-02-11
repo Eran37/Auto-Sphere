@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Bot } from "lucide-react";
 
 interface ContactFormData {
   name: string;
