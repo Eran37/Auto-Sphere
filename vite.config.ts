@@ -19,9 +19,6 @@ export default defineConfig({
           ui: ['lucide-react'],
         },
       },
-      input: {
-        main: './index.html'
-      }
     },
   },
   server: {
