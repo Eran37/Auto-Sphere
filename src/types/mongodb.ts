@@ -1,5 +1,13 @@
 import { ObjectId } from 'mongodb';
 
+export interface ChatMessage {
+  _id?: ObjectId;
+  message: string;
+  user_id: string;
+  created_at: Date;
+  is_bot: boolean;
+}
+
 export interface Contact {
   _id?: ObjectId;
   name: string;
@@ -8,15 +16,6 @@ export interface Contact {
   email: string;
   problem: string;
   created_at: Date;
-  status: string;
-}
-
-export interface ChatMessage {
-  _id?: ObjectId;
-  message: string;
-  user_id: string;
-  created_at: Date;
-  is_bot: boolean;
 }
 
 export interface CompanyLogo {

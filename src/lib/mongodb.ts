@@ -1,28 +1,22 @@
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import { MongoClient, Db } from 'mongodb';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-const uri = process.env.MONGODB_URI;
-
-if (!uri) {
-  throw new Error('MONGODB_URI is not defined in environment variables');
-}
-
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
-
-export async function getDb() {
-  await client.connect();
-  return client.db(process.env.MONGODB_DB_NAME || 'cluster0');
-}
+let cachedDb: Db | null = null;
 
 export const collections = {
+  companyLogos: 'company_logos',
   contacts: 'contacts',
-  chatMessages: 'chat_messages',
-  companyLogos: 'company_logos'
-} as const; 
+  chatMessages: 'chat_messages'
+} as const;
+
+export async function getDb(): Promise<Db> {
+  if (cachedDb) {
+    return cachedDb;
+  }
+
+  const client = await MongoClient.connect(process.env.MONGODB_URI || '');
+  const db = client.db(process.env.MONGODB_DB_NAME);
+  cachedDb = db;
+  return db;
+} 

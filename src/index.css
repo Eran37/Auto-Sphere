@@ -41,8 +41,9 @@
 }
 
 .gradient-text {
-  @apply bg-clip-text text-transparent;
-  background-image: linear-gradient(45deg, var(--electric-blue), var(--hot-pink), var(--cyber-yellow));
+  background: linear-gradient(to right, #00f7ff, #b400ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .neon-glow {
@@ -163,4 +164,10 @@
 .input-silver:focus {
   border-color: var(--electric-blue);
   box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.2);
+}
+
+body {
+  direction: rtl;
+  background-color: #0a192f;
+  color: white;
 }
