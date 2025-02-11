@@ -1,5 +1,5 @@
-import React from 'react';
-import { Bot, Clock, DollarSign, TrendingUp } from 'lucide-react';
+import { FC } from "react";
+import { Bot, Clock, DollarSign, TrendingUp } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -9,16 +9,20 @@ export default function Hero() {
           <main className="mt-6 mx-auto max-w-7xl px-4 sm:mt-8 sm:px-6 lg:mt-10 lg:px-8">
             <div className="text-center">
               <h1 className="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
-                <span className="gradient-text">האוטומציה שחוסכת לך מאות שעות עבודה</span>
+                <span className="gradient-text">
+                  האוטומציה שחוסכת לך מאות שעות עבודה
+                </span>
                 <br />
                 <span className="text-gray-300 text-3xl sm:text-4xl md:text-5xl mt-2 block">
                   תן לתהליכים שלך לעבוד בשבילך
                 </span>
               </h1>
-              
+
               <p className="mt-4 text-xl text-gray-300 max-w-3xl mx-auto">
-                לאחר בירור מעמיק של הצרכים העסקיים שלך, נתאים עבורך פתרון אוטומציה חכם שמייעל תהליכים, 
-                חוסך זמן יקר ומגדיל רווחיות. מתאים במיוחד לעורכי דין, רואי חשבון, סוכנויות ביטוח, נדל"ן ועסקים עם תהליכים חוזרים.
+                לאחר בירור מעמיק של הצרכים העסקיים שלך, נתאים עבורך פתרון
+                אוטומציה חכם שמייעל תהליכים, חוסך זמן יקר ומגדיל רווחיות. מתאים
+                במיוחד לעורכי דין, רואי חשבון, סוכנויות ביטוח, נדל"ן ועסקים עם
+                תהליכים חוזרים.
               </p>
 
               <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3 max-w-3xl mx-auto">

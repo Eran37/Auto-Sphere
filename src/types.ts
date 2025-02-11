@@ -1,11 +1,11 @@
-import { Database } from './types/supabase';
+import { LucideIcon } from 'lucide-react';
 
 export interface Service {
-  id: number;
+  id: string;
   title: string;
   description: string;
+  icon: LucideIcon;
   examples: string[];
-  icon: string;
 }
 
 export interface ContactForm {

@@ -78,8 +78,8 @@ export default function ChatBot() {
     return /^[\d-+\s]{9,}$/.test(phone);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
     if (!input.trim()) return;
 
     try {
@@ -165,7 +165,7 @@ export default function ChatBot() {
           return;
         }
         updatedFormData.problem = input;
-        await handleSubmit(e);
+        await handleSubmit(event);
         break;
     }
   };
