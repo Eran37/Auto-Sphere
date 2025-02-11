@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getDb, collections } from "../lib/mongodb";
+import { Bot } from "lucide-react";
 
 interface ContactFormData {
   name: string;

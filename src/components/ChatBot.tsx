@@ -160,7 +160,7 @@ export default function ChatBot() {
           return;
         }
         updatedFormData.problem = input;
-        await handleSubmit(event as React.FormEvent);
+        await handleSubmit({ preventDefault: () => {} } as React.FormEvent);
         break;
     }
   };

@@ -1,4 +1,4 @@
-import { ArrowLeft, Bot, Clock, DollarSign, TrendingUp } from "lucide-react";
+import { ArrowLeft, Bot } from "lucide-react";
 
 export default function Hero() {
   return (
