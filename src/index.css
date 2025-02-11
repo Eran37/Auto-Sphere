@@ -16,14 +16,11 @@
   }
 
   :root {
-    /* New Futuristic Color Palette */
     --electric-blue: #1E90FF;
     --neon-green: #32CD32;
     --hot-pink: #FF1493;
     --cyber-yellow: #FFD700;
     --bright-orange: #FF8C00;
-    
-    /* Original Colors as Accents */
     --neon-blue: #00f7ff;
     --neon-purple: #b400ff;
     --dark-blue: #0a192f;
@@ -41,21 +38,23 @@
   }
 }
 
-.gradient-text {
-  background: linear-gradient(to right, #00f7ff, #b400ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+@layer components {
+  .gradient-text {
+    background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-.neon-glow {
-  box-shadow: 0 0 15px rgba(30, 144, 255, 0.3),
-              0 0 30px rgba(255, 20, 147, 0.1);
-}
+  .neon-glow {
+    box-shadow: 0 0 15px rgba(30, 144, 255, 0.3),
+                0 0 30px rgba(255, 20, 147, 0.1);
+  }
 
-.card-gradient {
-  background: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(17, 34, 64, 0.95) 100%);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--electric-blue);
+  .card-gradient {
+    background: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(17, 34, 64, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--electric-blue);
+  }
 }
 
 .silver-highlight {
