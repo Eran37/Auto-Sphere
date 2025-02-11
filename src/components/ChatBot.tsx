@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import React, { useState, useEffect, useRef } from "react";
+import { MessageCircle, X } from "lucide-react";
+import { getDb, collections } from "../lib/mongodb";
+import type { ChatMessage } from "../types/mongodb";
 
 interface Message {
   text: string;
@@ -16,17 +17,15 @@ interface ChatForm {
 
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    { text: "היי! אני כאן לעזור לך למצוא פתרונות אוטומציה לעסק שלך. מה שמך?", isBot: true }
-  ]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [formData, setFormData] = useState<ChatForm>({
-    name: '',
-    email: '',
-    phone: '',
-    problem: ''
+    name: "",
+    email: "",
+    phone: "",
+    problem: "",
   });
-  const [currentStep, setCurrentStep] = useState<keyof ChatForm>('name');
+  const [currentStep, setCurrentStep] = useState<keyof ChatForm>("name");
   const [isConversationEnded, setIsConversationEnded] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -49,17 +48,26 @@ export default function ChatBot() {
   // Add Escape key handler
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen && messages.length > 1) {
+      if (e.key === "Escape" && isOpen && messages.length > 1) {
         setIsOpen(false);
       }
     };
 
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
   }, [isOpen, messages]);
 
   const addMessage = (text: string, isBot: boolean) => {
-    setMessages(prev => [...prev, { text, isBot }]);
+    setMessages((prev) => [
+      ...prev,
+      {
+        _id: undefined,
+        message: text,
+        user_id: isBot ? "bot" : "user",
+        created_at: new Date(),
+        is_bot: isBot,
+      },
+    ]);
   };
 
   const isValidEmail = (email: string): boolean => {
@@ -70,88 +78,94 @@ export default function ChatBot() {
     return /^[\d-+\s]{9,}$/.test(phone);
   };
 
-  const handleSubmit = async (updatedFormData: ChatForm) => {
-    if (isSending) return;
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
 
     try {
-      setIsSending(true);
+      const db = await getDb();
+      const result = await db.collection(collections.chatMessages).insertOne({
+        message: input,
+        user_id: "user",
+        created_at: new Date(),
+        is_bot: false,
+      });
 
-      const { error } = await supabase
-        .from('chat_conversations')
-        .insert([{
-          customer_name: updatedFormData.name,
-          customer_email: updatedFormData.email,
-          customer_phone: updatedFormData.phone,
-          business_needs: updatedFormData.problem
-        }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          _id: result.insertedId,
+          message: input,
+          user_id: "user",
+          created_at: new Date(),
+          is_bot: false,
+        },
+      ]);
 
-      if (error) {
-        console.error('Error saving conversation:', error);
-        addMessage("אירעה שגיאה בשמירת הפרטים. אנא נסה שוב.", true);
-        return;
-      }
-
-      const thankYouMessage = `תודה ${updatedFormData.name}! נציג שלנו יצור איתך קשר בהקדם כדי לדבר על פתרונות אוטומציה מותאמים לעסק שלך.`;
-      addMessage(thankYouMessage, true);
-      setIsConversationEnded(true);
-      
+      setInput("");
     } catch (error) {
-      console.error('Error submitting form:', error);
-      addMessage("אירעה שגיאה בשליחת הטופס. אנא נסה שוב מאוחר יותר.", true);
-    } finally {
-      setIsSending(false);
+      console.error("Error sending message:", error);
     }
   };
 
   const handleInput = async (input: string) => {
     if (!input.trim() || isConversationEnded || isSending) return;
-    
+
     addMessage(input, false);
     setInput("");
 
     const updatedFormData = { ...formData };
 
     switch (currentStep) {
-      case 'name':
+      case "name":
         if (input.trim().length < 2) {
           addMessage("השם חייב להכיל לפחות 2 תווים. אנא נסה שוב.", true);
           return;
         }
         updatedFormData.name = input;
         setFormData(updatedFormData);
-        setCurrentStep('email');
+        setCurrentStep("email");
         addMessage("תודה! מה כתובת האימייל שלך?", true);
         break;
 
-      case 'email':
+      case "email":
         if (!isValidEmail(input)) {
-          addMessage("כתובת האימייל לא תקינה. אנא הזן כתובת אימייל תקינה", true);
+          addMessage(
+            "כתובת האימייל לא תקינה. אנא הזן כתובת אימייל תקינה",
+            true
+          );
           return;
         }
         updatedFormData.email = input;
         setFormData(updatedFormData);
-        setCurrentStep('phone');
+        setCurrentStep("phone");
         addMessage("מצוין! מה מספר הטלפון שלך?", true);
         break;
 
-      case 'phone':
+      case "phone":
         if (!isValidPhone(input)) {
-          addMessage("מספר הטלפון לא תקין. אנא הזן מספר טלפון תקין (לפחות 9 ספרות)", true);
+          addMessage(
+            "מספר הטלפון לא תקין. אנא הזן מספר טלפון תקין (לפחות 9 ספרות)",
+            true
+          );
           return;
         }
         updatedFormData.phone = input;
         setFormData(updatedFormData);
-        setCurrentStep('problem');
-        addMessage("מעולה! ספר לי קצת על העסק שלך ואיך אתה חושב שאוטומציה יכולה לעזור לך?", true);
+        setCurrentStep("problem");
+        addMessage(
+          "מעולה! ספר לי קצת על העסק שלך ואיך אתה חושב שאוטומציה יכולה לעזור לך?",
+          true
+        );
         break;
 
-      case 'problem':
+      case "problem":
         if (input.trim().length < 10) {
           addMessage("אנא פרט קצת יותר על העסק שלך (לפחות 10 תווים)", true);
           return;
         }
         updatedFormData.problem = input;
-        await handleSubmit(updatedFormData);
+        await handleSubmit(e);
         break;
     }
   };
@@ -162,16 +176,14 @@ export default function ChatBot() {
   };
 
   const resetChat = () => {
-    setMessages([
-      { text: "היי! אני כאן לעזור לך למצוא פתרונות אוטומציה לעסק שלך. מה שמך?", isBot: true }
-    ]);
+    setMessages([]);
     setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      problem: ''
+      name: "",
+      email: "",
+      phone: "",
+      problem: "",
     });
-    setCurrentStep('name');
+    setCurrentStep("name");
     setIsConversationEnded(false);
     setInput("");
     setIsSending(false);
@@ -188,7 +200,11 @@ export default function ChatBot() {
         }}
         className="fixed bottom-6 left-6 p-3 rounded-full bg-gradient-to-r from-[#1E90FF] to-[#FF1493] text-white shadow-lg transition-all duration-300 z-50 hover:opacity-90"
       >
-        {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
+        {isOpen ? (
+          <X className="h-6 w-6" />
+        ) : (
+          <MessageCircle className="h-6 w-6" />
+        )}
       </button>
 
       {isOpen && (
@@ -197,24 +213,28 @@ export default function ChatBot() {
             <MessageCircle className="h-5 w-5 ml-2" />
             <span className="font-medium">Auto-Sphere צ'אט</span>
             {messages.length > 1 && (
-              <span className="text-xs text-gray-100 mr-auto">לחץ Esc למזעור</span>
+              <span className="text-xs text-gray-100 mr-auto">
+                לחץ Esc למזעור
+              </span>
             )}
           </div>
 
           <div className="flex-1 overflow-y-auto p-3 space-y-2">
             {messages.map((message, index) => (
               <div
-                key={index}
-                className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
+                key={message._id?.toString() || index}
+                className={`flex ${
+                  message.is_bot ? "justify-start" : "justify-end"
+                }`}
               >
                 <div
                   className={`max-w-[80%] p-2 rounded-lg text-sm ${
-                    message.isBot
-                      ? 'bg-gray-800 text-gray-100'
-                      : 'bg-gradient-to-r from-[#1E90FF] to-[#FF1493] text-white'
+                    message.is_bot
+                      ? "bg-gray-800 text-gray-100"
+                      : "bg-gradient-to-r from-[#1E90FF] to-[#FF1493] text-white"
                   }`}
                 >
-                  {message.text}
+                  {message.message}
                 </div>
               </div>
             ))}
@@ -228,8 +248,10 @@ export default function ChatBot() {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                placeholder={isConversationEnded ? "השיחה הסתיימה" : "הקלד הודעה..."}
+                onKeyPress={(e) => e.key === "Enter" && handleSend()}
+                placeholder={
+                  isConversationEnded ? "השיחה הסתיימה" : "הקלד הודעה..."
+                }
                 disabled={isConversationEnded || isSending}
                 className="flex-1 p-2 rounded-lg bg-gray-800 text-gray-100 border-none focus:ring-1 focus:ring-[#1E90FF] placeholder-gray-500 disabled:opacity-50"
               />
@@ -238,7 +260,7 @@ export default function ChatBot() {
                 disabled={isConversationEnded || isSending}
                 className="mr-2 px-4 py-2 bg-gradient-to-r from-[#1E90FF] to-[#FF1493] text-white rounded hover:opacity-90 transition-opacity disabled:opacity-50"
               >
-                {isSending ? '...' : 'שלח'}
+                {isSending ? "..." : "שלח"}
               </button>
             </div>
           </div>
