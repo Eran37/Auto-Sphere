@@ -1,5 +1,5 @@
 import React from "react";
-import { LucideIcon } from "lucide-react";
+import { LucideIcon, Bot, FileText, MessageSquare } from "lucide-react";
 
 interface Platform {
   name: string;
@@ -8,7 +8,21 @@ interface Platform {
 }
 
 const platforms: Array<Platform> = [
-  // הוסף כאן את הפלטפורמות שלך
+  {
+    name: "אוטומציית תהליכים",
+    description: "ייעול תהליכים עסקיים חוזרים",
+    icon: Bot,
+  },
+  {
+    name: "אוטומציית מסמכים",
+    description: "ניהול וארגון מסמכים אוטומטי",
+    icon: FileText,
+  },
+  {
+    name: "אוטומציית תקשורת",
+    description: "ניהול תקשורת אוטומטית עם לקוחות",
+    icon: MessageSquare,
+  },
 ];
 
 const PlatformCard: React.FC<{ platform: Platform; index: number }> = ({

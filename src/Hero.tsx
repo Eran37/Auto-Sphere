@@ -1,4 +1,3 @@
-import React from "react";
 import { ArrowLeft, Bot, Clock, DollarSign, TrendingUp } from "lucide-react";
 
 export default function Hero() {

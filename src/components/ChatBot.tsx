@@ -3,6 +3,13 @@ import { MessageCircle, X } from "lucide-react";
 import { getDb, collections } from "../lib/mongodb";
 import type { ChatMessage } from "../types/mongodb";
 
+interface ChatForm {
+  name: string;
+  email: string;
+  phone: string;
+  problem: string;
+}
+
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -12,6 +19,12 @@ export default function ChatBot() {
   const [isSending, setIsSending] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [formData, setFormData] = useState<ChatForm>({
+    name: "",
+    email: "",
+    phone: "",
+    problem: "",
+  });
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
