@@ -1,27 +1,28 @@
-import { Service } from '../types';
+import { Brain, Bot, MessageCircle, BarChart, Lock, Cloud } from "lucide-react";
+import type { Service } from "../types";
 
 export const services: Service[] = [
   {
-    id: 1,
-    title: "אוטומציה חכמה מבוססת AI",
-    description: "פתרונות אוטומציה מתקדמים המשלבים בינה מלאכותית ולמידת מכונה",
+    id: "1",
+    title: "אוטומציה קוגניטיבית",
+    description: "שילוב AI ולמידת מכונה בתהליכים עסקיים",
+    icon: Brain,
     examples: [
-      "התאמה אישית לצרכי העסק",
-      "למידה והשתפרות מתמדת",
-      "אופטימיזציה חכמה של תהליכים"
-    ],
-    icon: "Brain"
+      "זיהוי טקסט וקול",
+      "עיבוד שפה טבעית",
+      "קבלת החלטות אוטומטית"
+    ]
   },
   {
-    id: 2,
-    title: "RPA - אוטומציה רובוטית",
-    description: "אוטומציה של תהליכים עסקיים באמצעות רובוטים תוכנה חכמים",
+    id: "2",
+    title: "אוטומציית תהליכים",
+    description: "ייעול תהליכים עסקיים חוזרים",
+    icon: Bot,
     examples: [
-      "חיסכון משמעותי בזמן עבודה",
-      "הפחתת טעויות אנוש",
-      "עבודה רציפה 24/7"
-    ],
-    icon: "Bot"
+      "מילוי טפסים אוטומטי",
+      "העברת נתונים בין מערכות",
+      "תזמון משימות"
+    ]
   },
   {
     id: 3,
@@ -32,7 +33,7 @@ export const services: Service[] = [
       "מענה מותאם אישית",
       "למידה מתמדת והשתפרות"
     ],
-    icon: "MessageCircle"
+    icon: MessageCircle
   },
   {
     id: 4,
@@ -43,7 +44,7 @@ export const services: Service[] = [
       "זיהוי מגמות אוטומטי",
       "המלצות מבוססות דאטה"
     ],
-    icon: "BarChart"
+    icon: BarChart
   },
   {
     id: 5,
@@ -54,7 +55,7 @@ export const services: Service[] = [
       "התאמה לתהליכים קיימים",
       "בקרה ותיעוד מלא"
     ],
-    icon: "Lock"
+    icon: Lock
   },
   {
     id: 6,
@@ -65,6 +66,6 @@ export const services: Service[] = [
       "זרימת מידע חלקה",
       "פתרון מקיף לכל צורך"
     ],
-    icon: "Cloud"
+    icon: Cloud
   }
 ];
