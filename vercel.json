@@ -6,7 +6,7 @@
   "rewrites": [
     { 
       "source": "/api/:path*",
-      "destination": "/api/:path*"
+      "destination": "https://auto-sphere-api.vercel.app/api/:path*"
     },
     {
       "source": "/(.*)",
