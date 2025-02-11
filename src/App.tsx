@@ -9,15 +9,17 @@ import CompanyLogos from "./components/CompanyLogos";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#0a192f] text-white">
-      <Header />
-      <Hero />
-      <CompanyLogos />
-      <About />
-      <AutomationPlatforms />
-      <Testimonials />
-      <ContactForm />
-      <ChatBot />
+    <div className="min-h-screen w-full bg-[#0a192f] text-white overflow-x-hidden">
+      <div className="max-w-[2000px] mx-auto">
+        <Header />
+        <Hero />
+        <CompanyLogos />
+        <About />
+        <AutomationPlatforms />
+        <Testimonials />
+        <ContactForm />
+        <ChatBot />
+      </div>
     </div>
   );
 }
