@@ -13,8 +13,8 @@ export interface Contact {
 
 export interface ChatMessage {
   _id?: ObjectId;
-  user_id: string;
   message: string;
+  user_id: string;
   created_at: Date;
   is_bot: boolean;
 }
@@ -23,6 +23,22 @@ export interface CompanyLogo {
   _id?: ObjectId;
   name: string;
   logo_url: string;
-  created_at: Date;
   display_order: number;
+}
+
+export interface AutomationPlatform {
+  _id?: ObjectId;
+  name: string;
+  description: string;
+  features: string[];
+  icon: string;
+}
+
+export interface Testimonial {
+  _id?: ObjectId;
+  name: string;
+  title: string;
+  content: string;
+  rating: number;
+  avatar: string;
 } 
